@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phân loại rau củ quả</title>
+</head>
+<body>
+    <h1>Phân loại rau củ quả</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <input type="file" name="images" multiple required>
+        <input type="submit" value="Tải lên và phân loại">
+    </form>
+
+    {% if results %}
+        <h2>Kết quả phân loại:</h2>
+        <ul>
+            {% for filename, label, path in results %}
+                <li><strong>{{ filename }}</strong> → <em>{{ label }}</em><br>
+                    <img src="{{ '/' + path }}" alt="{{ label }}" width="150">
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
